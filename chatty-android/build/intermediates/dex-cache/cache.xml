@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-a248037085f17f9ad31d459e154072e880a79e2e.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/classes-b7ae8328e2ed10901905e8369b42ec21bda99bd1.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/jackson-datatype-json-org-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="bde982be7704add843161521ef541585c328e62f">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/jackson-datatype-json-org-2.4.0-60dfb5ca2bc04f0b108ccc132e132e232d2325e5.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/jackson-core-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1e33fd4cca6c4a9bf3d2f638cabb504a5b5c989d">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/jackson-core-2.4.0-1df459c37ae91658c8489cdd055facf03c5292b6.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/jackson-annotations-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d6a66c7a5f01cf500377bd669507a08cfeba882a">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/jackson-annotations-2.4.0-45d17ad6dcf8e83a0b157dca903c27279dd33899.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/jackson-databind-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="473e063d6396a1ff6e4b9c7943e604291ce18b07">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/jackson-databind-2.4.0-f3a1752dcc914102df225e4b6b59091b902da528.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/junit-4.11.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e031bb61df09069aeb2bffb4019e7a5034a4ee0">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/junit-4.11-6ef34e27e843d5207f8396449c606f16e012375e.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/netty-all-4.0.24.Final.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8394cd4f580422af1ef344fcd4405c4dac910ef8">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/netty-all-4.0.24.Final-ded017144de3624e2fb02d6d3fefabf6c26f3973.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/json-20090211_1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd3e57b26450cd682f5991c537ab44ba1fbbdb54">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/json-20090211_1-80a8fe8836aacec701fbdea03e658d8f60c788b0.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-25d9776beea8c02d0d2f1018b87a5575d59ffb8f.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/chatty-java-client-1.0.0-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a6f6d00d4d03dbaca0f36f4ea8f328381bc0710b">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/chatty-java-client-1.0.0-SNAPSHOT-f0ac4ddaf9ebfddd297abfefb17f7c98cd5144d9.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/guava-18.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/guava-18.0-49548402aa1766aca4bafded76f6d73c36f9a5b9.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/classes-137a305ccd713f2e329798a0994e8a76223849ae.jar" />
+    </item>
+    <item
+        jar="/Users/linxiang/Desktop/chat/Chatty/app/libs/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/Users/linxiang/Desktop/chat/Chatty/app/build/intermediates/pre-dexed/debug/hamcrest-core-1.3-a11036073d4fd80ac2f4d8ca65c74b67ee1385d5.jar" />
+    </item>
+
+</items>
