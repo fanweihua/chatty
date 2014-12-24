@@ -12,12 +12,12 @@ import com.funplus.chatty.entity.User;
  * @author Weihua Fan
  *
  */
-public class LogoutRequest extends Request {
+public class HeartbeatRequest extends Request {
     
     private User user;
-    
-    public LogoutRequest(User user) {
-        super(Request.Logout);
+
+    public HeartbeatRequest(User user) {
+        super(Request.Heartbeat);
         this.user = user;
     }
 

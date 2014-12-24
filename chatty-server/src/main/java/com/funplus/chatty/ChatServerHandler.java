@@ -5,11 +5,14 @@ package com.funplus.chatty;
 
 import org.json.JSONObject;
 
-import com.funplus.chatty.controller.Session;
 import com.funplus.chatty.controller.SessionManager;
+import com.funplus.chatty.controller.UserManager;
+import com.funplus.chatty.entity.Session;
 import com.funplus.chatty.entity.User;
-import com.funplus.chatty.entity.UserManager;
+import com.funplus.chatty.message.HeartbeatRequest;
 import com.funplus.chatty.message.LoginRequest;
+import com.funplus.chatty.message.LogoutRequest;
+import com.funplus.chatty.message.PresenceResponse;
 import com.funplus.chatty.message.PrivateMessageRequest;
 import com.funplus.chatty.message.PublicMessageRequest;
 import com.funplus.chatty.message.Request;
@@ -18,6 +21,7 @@ import com.google.common.eventbus.EventBus;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.timeout.IdleStateEvent;
 
 /**
  * @author Weihua Fan
@@ -70,11 +74,55 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<JSONObject> {
             pubReq.setSender(sessionManager.getSessionByChannel((SocketChannel)ctx.channel()));
             eventBus.post(pubReq);
             break;
+        case Request.Heartbeat:
+            User hbFrom = userManager.getUserById(msg.getInt("u"));
+            HeartbeatRequest hb = new HeartbeatRequest(hbFrom);
+            hb.setId(actionId);
+            hb.setSender(sessionManager.getSessionByChannel((SocketChannel)ctx.channel()));
+            eventBus.post(hb);
+            break;
+        case Request.Logout:
+            User loFrom = userManager.getUserById(msg.getInt("u"));
+            LogoutRequest logout = new LogoutRequest(loFrom);
+            logout.setId(actionId);
+            logout.setSender(sessionManager.getSessionByChannel((SocketChannel)ctx.channel()));
+            eventBus.post(logout);
+            break;
         }
     }
     
     @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        evictUser(ctx);
+    }
+
+    @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
     }
+
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent) {
+            evictUser(ctx);
+        }
+    }
+    
+    private void evictUser(ChannelHandlerContext ctx) {
+        Session session = sessionManager.getSessionByChannel((SocketChannel)ctx.channel());
+        if (session != null) {
+            User user = userManager.getUserBySession(session);
+            if (user != null) {
+                PresenceResponse pr = new PresenceResponse(user, false);
+                eventBus.post(pr);
+                userManager.removeUser(user);
+                System.out.println(user.getId()+":"+user.getName() + " has been disconnected.");
+            }
+            sessionManager.removeSession(session);
+        }
+        
+        ctx.close();
+    }
+    
+    
 }

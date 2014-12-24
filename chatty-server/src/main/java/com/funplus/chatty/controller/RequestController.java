@@ -7,6 +7,7 @@ import com.funplus.chatty.ChatServer;
 import com.funplus.chatty.entity.User;
 import com.funplus.chatty.message.LoginRequest;
 import com.funplus.chatty.message.LoginResponse;
+import com.funplus.chatty.message.LogoutRequest;
 import com.funplus.chatty.message.PresenceResponse;
 import com.funplus.chatty.message.PrivateMessageRequest;
 import com.funplus.chatty.message.PrivateMessageResponse;
@@ -67,4 +68,23 @@ public class RequestController {
             }
         }
     }
+    
+    @Subscribe
+    public void handleLogout(LogoutRequest logout) {
+        User from = logout.getFrom();
+        boolean hasUser = chatServer.getUserManager().containUser(from);
+        if (hasUser) {
+            System.out.println(from.getId()+":"+from.getName() + " logged out.");
+            chatServer.getUserManager().removeUser(from);
+            chatServer.getSessionManager().removeSession(from.getSession());
+            List<User> userList = chatServer.getUserManager().getUserList();
+            PresenceResponse presence = new PresenceResponse(from, false);
+            for (User user : userList) {
+                Channel channel = user.getSession().getSocketChannel();
+                channel.writeAndFlush(presence.build());
+            }
+            
+        }
+    }
+    
 }

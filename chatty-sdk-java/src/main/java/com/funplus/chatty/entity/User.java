@@ -14,6 +14,7 @@ public class User {
     private int id;
     private String name;
     private String language;
+    private long lastActivityTime;
     
     public User(int id, String name, String language) {
         this.id = id;
@@ -45,6 +46,14 @@ public class User {
         this.language = language;
     }
     
+    public long getLastActivityTime() {
+        return lastActivityTime;
+    }
+
+    public void setLastActivityTime(long lastActivityTime) {
+        this.lastActivityTime = lastActivityTime;
+    }
+
     public static User newFromJsonObject(JSONObject obj) {
         try {
             return new User(obj.getInt("id"), obj.getString("n"), obj.getString("l"));

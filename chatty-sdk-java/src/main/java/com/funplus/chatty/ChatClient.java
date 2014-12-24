@@ -8,6 +8,7 @@ import com.funplus.chatty.entity.UserManager;
 import com.funplus.chatty.event.ConnectEvent;
 import com.funplus.chatty.event.EventController;
 import com.funplus.chatty.message.LoginRequest;
+import com.funplus.chatty.message.LogoutRequest;
 import com.funplus.chatty.message.PrivateMessageRequest;
 import com.funplus.chatty.message.PublicMessageRequest;
 import com.google.common.eventbus.EventBus;
@@ -15,6 +16,8 @@ import com.google.common.eventbus.Subscribe;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
@@ -33,7 +36,6 @@ public class ChatClient {
     private int majVersion = 1;
     private int minVersion = 0;
     private int subVersion = 0;
-    private String clientDetails = "Android";
     
     private String host;
     private int port;
@@ -78,11 +80,16 @@ public class ChatClient {
         b.connect(host, port);
     }
     
-    public void disconnect() {
-        // Send disconnect request & shut down
-        
-        // The connection is closed automatically on shutdown.
-        workerGroup.shutdownGracefully();
+    private void disconnect() {
+        try {
+            channel.closeFuture().sync();
+        } catch (InterruptedException e) {
+            // TODO
+        } finally {
+            // The connection is closed automatically on shutdown.
+            workerGroup.shutdownGracefully();
+        }
+        System.out.println("Disconnected from server.");
     }
     
     public void login(final String name, final String password) {
@@ -97,10 +104,20 @@ public class ChatClient {
         connect();
     }
     
-    public void logout(int id) {
+    public void logout() {
         // Send logout request
-        // TODO
-        disconnect();
+        User self = userManager.getSelf();
+        LogoutRequest logout = new LogoutRequest(self);
+        ChannelFuture future = channel.writeAndFlush(logout.build());
+        future.addListener(new ChannelFutureListener() {
+
+            @Override
+            public void operationComplete(ChannelFuture paramF) throws Exception {
+                // release resources
+                disconnect();
+            }
+            
+        });
         
     }
     

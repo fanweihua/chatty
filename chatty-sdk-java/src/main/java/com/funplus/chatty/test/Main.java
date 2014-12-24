@@ -42,6 +42,10 @@ public class Main {
             case "pum":
                 client.sendPublicMessage(req[1]);
                 break;
+            case "logout":
+                client.logout();
+                System.exit(0);
+                break;
             default:
                 System.err.println("Invalid command");
             }

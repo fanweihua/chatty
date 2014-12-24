@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.funplus.chatty.controller.RequestController;
 import com.funplus.chatty.controller.SessionManager;
-import com.funplus.chatty.entity.UserManager;
+import com.funplus.chatty.controller.UserManager;
 import com.google.common.eventbus.EventBus;
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -23,6 +23,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleStateHandler;
 
 /**
  * @author Weihua Fan
@@ -66,6 +67,7 @@ public class ChatServer {
                     pipeline.addLast("jsonDecoder", new JsonDecoder(mapper));
                     pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
                     pipeline.addLast("jsonEncoder", new JsonEncoder(mapper));
+                    pipeline.addLast("idleStateHandler", new IdleStateHandler(0, 0, 300));
                     pipeline.addLast(new ChatServerHandler(ChatServer.this));
                 }
                  

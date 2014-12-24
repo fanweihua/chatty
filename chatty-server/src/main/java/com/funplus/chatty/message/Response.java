@@ -5,7 +5,7 @@ package com.funplus.chatty.message;
 
 import org.json.JSONObject;
 
-import com.funplus.chatty.controller.Session;
+import com.funplus.chatty.entity.Session;
 
 import java.util.List;
 

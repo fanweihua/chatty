@@ -6,27 +6,29 @@ package com.funplus.chatty.message;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.funplus.chatty.entity.User;
-
 /**
  * @author Weihua Fan
  *
  */
-public class LogoutRequest extends Request {
+public class HeartbeatResponse extends Response {
     
-    private User user;
+    private String error;
     
-    public LogoutRequest(User user) {
-        super(Request.Logout);
-        this.user = user;
+    public HeartbeatResponse(String error) {
+        setId(Request.Heartbeat);
+        this.error = error;
     }
 
     @Override
     public JSONObject build() {
         JSONObject msg = new JSONObject();
         try {
-            msg.put("a", id);
-            msg.put("u", user.getId());
+            msg.put("a", getId());
+            if (error == null) {
+                // empty body
+            } else {
+                msg.put("er", error);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -6,8 +6,6 @@ package com.funplus.chatty.entity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.funplus.chatty.controller.Session;
-
 /**
  * @author Weihua Fan
  *

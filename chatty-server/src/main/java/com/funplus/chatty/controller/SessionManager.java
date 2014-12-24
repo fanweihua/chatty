@@ -3,6 +3,8 @@
  */
 package com.funplus.chatty.controller;
 
+import com.funplus.chatty.entity.Session;
+
 import io.netty.channel.socket.SocketChannel;
 
 import java.util.Map;
@@ -30,15 +32,7 @@ public class SessionManager {
       session.setId(idGenerator.incrementAndGet());
       session.setSessionManager(this);
       session.setSocketChannel(socketChannel);
-      //session.setMaxIdleTime(this.engine.getConfiguration().getDefaultMaxSessionIdleTime());
-      //session.setNodeId(this.config.isClustered() ? this.engine.getClusterManager().getLocalNodeName() : "");
-      //session.setType(SessionType.DEFAULT);
-      //session.setReconnectionSeconds(this.engine.getConfiguration().getGlobalReconnectionSeconds());
-
-      //IPacketQueue packetQueue = new NonBlockingPacketQueue(this.engine.getConfiguration().getSessionPacketQueueMaxSize());
-      //packetQueue.setPacketQueuePolicy(this.packetQueuePolicy);
-      //session.setPacketQueue(packetQueue);
-
+      session.setConnected(true);
       return session;
     }
     
@@ -49,5 +43,10 @@ public class SessionManager {
     
     public Session getSessionByChannel(SocketChannel channel) {
         return sessionsByChannel.get(channel);
+    }
+    
+    public void removeSession(Session session) {
+        sessionsById.remove(session.getId());
+        sessionsByChannel.remove(session.getSocketChannel());
     }
 }

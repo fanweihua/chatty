@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.funplus.chatty.entity.User;
 import com.funplus.chatty.event.ConnectEvent;
+import com.funplus.chatty.event.Heartbeat;
 import com.funplus.chatty.event.LoginEvent;
 import com.funplus.chatty.event.Presence;
 import com.funplus.chatty.event.PrivateMessage;
@@ -72,16 +73,21 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<JSONObject> {
             Presence presence = new Presence(presencer, online);
             client.postEvent(presence);
             break;
+        case Request.Heartbeat:
+            Heartbeat hb = new Heartbeat();
+            client.postEvent(hb);
+            break;
         }
+    }
+    
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        super.channelInactive(ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         client.postEvent(new ConnectEvent(cause.getMessage()));
     }
-    
-    
-
-   
 
 }
